@@ -36,10 +36,16 @@
       <!--<input id="submit" type="submit" value="Submit">-->
       </form>
       </div>  
+    
 
+      <div id="floating-panel">
+        <input type="button" value="Toggle visibility" onclick="overlay.toggle();"></input>
+        <input type="button" value="Toggle DOM attachment" onclick="overlay.toggleDOM();"></input>
+      </div>
     <div id="map"></div>
-    <script src="js/main.js" type="text/javascript"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing"
          async defer></script>
+    <script src="js/main.js" type="text/javascript"></script>
+    
   </body>
 </html>
