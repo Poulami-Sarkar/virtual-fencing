@@ -20,9 +20,9 @@
       }
     </style>
     <!-- Including CSS & jQuery Dialog UI Here-->
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/ui-darkness/jquery-ui.css" rel="stylesheet">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/ui-darkness/jquery-ui.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 <script src="js/dialog.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,142 +38,8 @@
       </div>  
 
     <div id="map"></div>
-    <script>
-      // This example requires the Drawing library. Include the libraries=drawing
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing">
-
-        var map;
-        var chicago = {lat: 41.85, lng: -87.65};
-        var lt;
-        var ln;
-        $("#lat").change(function(){
-          lt = $("#lat").val()
-        });
-        $("#lng").change(function(){
-          ln = $("#lng").val()
-        });
-        
-        /**
-        * The CenterControl adds a control to the map that recenters the map on
-        * Chicago.
-        * This constructor takes the control DIV as an argument.
-        * @constructor
-        */
-        function CenterControl(controlDiv, map) {
-
-          // Set CSS for the control border.
-          var controlUI = document.createElement('div');
-          controlUI.style.backgroundColor = '#fff';
-          controlUI.style.border = '2px solid #fff';
-          controlUI.style.borderRadius = '3px';
-          controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-          controlUI.style.cursor = 'pointer';
-          controlUI.style.marginBottom = '22px';
-          controlUI.style.textAlign = 'center';
-          controlUI.title = 'Click to recenter the map';
-          controlDiv.appendChild(controlUI);
-
-          // Set CSS for the control interior.
-          var controlText = document.createElement('div');
-          controlText.style.color = 'rgb(25,25,25)';
-          controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-          controlText.style.fontSize = '16px';
-          controlText.style.lineHeight = '38px';
-          controlText.style.paddingLeft = '5px';
-          controlText.style.paddingRight = '5px';
-          controlText.innerHTML = 'Center Map';
-          controlUI.appendChild(controlText);
-
-          // Setup the click event listeners: simply set the map to Chicago.
-          controlUI.addEventListener('click', function() {
-            
-            $("#dialog").dialog("open");
-
-            $("#dialog").on('dialogclose', function(event) {
-              //map.setCenter(chicago);
-              map.setCenter({lat: lt, lng: ln});
-              console.log("coords: ",lt,ln)
-            });
-            /*$("#submit").click(function(e) {
-              //var la = $("#lat").val();
-              //var ln = $("#lng").val();
-              //console.log(lt,ln);
-              
-            });*/
-            //map.setCenter(chicago);  
-              //map.setCenter({lat: la, lng: ln});
-          });
-
-        }        
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 12.8864, lng: 77.5900},
-          zoom: 18
-        });
-
-        var drawingManager = new google.maps.drawing.DrawingManager({
-          drawingMode: google.maps.drawing.OverlayType.MARKER,
-          drawingControl: true,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: ['polygon','rectangle']
-            //drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
-          },
-          markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-          circleOptions: {
-            fillColor: '#ffff00',
-            fillOpacity: 1,
-            strokeWeight: 5,
-            clickable: false,
-            editable: true,
-            zIndex: 1
-          }
-        });
-        drawingManager.setMap(map);
-		var blueCoords = [
-          {lat: 25.774, lng: -60.190},
-          {lat: 18.466, lng: -46.118},
-          {lat: 32.321, lng: -44.757}
-        ];
-
-        var redCoords = [
-          {lat: 25.774, lng: -80.190},
-          {lat: 18.466, lng: -66.118},
-          {lat: 32.321, lng: -64.757}
-        ];
-		var markers = [];
-		for (i=0;i<2;i++){
-			x = new google.maps.Circle({
-          map: map,
-          center: {lat: 12.8864, lng: 77.5900},
-		  radius:2,
-          //paths: redCoords,
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35,
-          draggable: true,
-          geodesic: true
-        });
-		markers.push(x);
-		console.log(markers[0].getCenter().lat());
-		console.log('Radius '+markers[0].getRadius());
-		}
-    // Create the DIV to hold the control and call the CenterControl()
-    // constructor passing in this DIV.
-    var centerControlDiv = document.createElement('div');
-    var centerControl = new CenterControl(centerControlDiv, map);
-
-    centerControlDiv.index = 1;
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-      
-  }
-
-	  
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=&libraries=drawing&callback=initMap"
+    <script src="js/main.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing&callback=initMap"
          async defer></script>
   </body>
 </html>
